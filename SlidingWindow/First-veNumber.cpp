@@ -44,7 +44,6 @@ vector<int> slidingWindowApproach(vector<int> numbers , int k){ // Time Complexi
     int n = numbers.size();
     vector<int> ans;
     for(int i = k; i <= n ; i++){                // From the end of the previous window till the end 
-        if(numbers[i] < 0) q.push(numbers[i]);      // If current number is negative push it into the stack
        if(!q.empty()){     // If queue is not empty it means we have a negative number for currenr window
         ans.push_back(q.front());       //so add the front of the queue in the answer
         if(numbers[i-k] == q.front()) q.pop();    // Remove the element from previous window and if its negative remove form the wueue to
@@ -52,6 +51,7 @@ vector<int> slidingWindowApproach(vector<int> numbers , int k){ // Time Complexi
        else{
             ans.push_back(0);   // If queue is empty it means we don't have a negative number for current window so add 0
        }
+        if(numbers[i] < 0) q.push(numbers[i]);      // If current number is negative push it into the stack
     }
     return ans;
 }
